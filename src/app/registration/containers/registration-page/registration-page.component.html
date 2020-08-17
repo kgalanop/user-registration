@@ -1,0 +1,14 @@
+<div class="page-header pb-4">
+  <h1>Register User</h1>
+</div>
+
+<div class="content p-3">
+  <app-registration-form
+    [fields]="fields$ | async"
+    [loading]="loading$ | async"
+    [error]="error$ | async"
+    [form]="form$ | async"
+    (register)="register($event)"
+  >
+  </app-registration-form>
+</div>

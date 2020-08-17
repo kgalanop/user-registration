@@ -1,0 +1,17 @@
+<div class="form-group row" [ngClass]="fieldInfo.name ? fieldInfo.name : ''">
+  <label [for]="fieldInfo.name">{{ fieldInfo.label }}</label>
+  <div class="input-group">
+    <input [type]="getInputType(fieldInfo.type)" 
+      [attr.autocomplete]="isLoginField(fieldInfo.type) ? 'new-password' : null"
+      class="form-control" 
+      [name]="fieldInfo.name" 
+      [formControl]="control" 
+      [ngClass]="control.invalid && (control.dirty || control.touched) ? 'is-invalid' : ''" 
+      [required]="fieldInfo.required" 
+      appShowHidePassword />
+  </div>
+  <div *ngIf="control.invalid && (control.dirty || control.touched)" class="text-danger">
+    {{ getValidationError(getFirstError(), control.errors[getFirstError()]) }}
+  </div>
+
+</div>

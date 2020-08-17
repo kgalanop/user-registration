@@ -1,0 +1,23 @@
+<div class="registration-form">
+  <ng-container *ngIf="loading">
+    <app-loading-spinner>
+    </app-loading-spinner>
+  </ng-container>
+  <div *ngIf="error; else registrationForm" class="alert alert-danger" role="alert" [innerHTML]="error">
+  </div>
+  <ng-template #registrationForm>
+    <form *ngIf="form && fields" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <ng-container *ngFor="let field of fields">
+        <app-registration-form-field
+          [fieldInfo]="field"
+          [control]="form.controls[field.name]"
+        >
+        </app-registration-form-field>
+      </ng-container>
+    
+      <div class="form-row">
+        <button class="btn btn-primary" [disabled]="form.invalid || loading" type="submit">Save</button>
+      </div>
+    </form>  
+  </ng-template>
+</div>
